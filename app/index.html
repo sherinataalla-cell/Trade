@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EAR Trader Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🎯 EAR TRADER SIMULATOR</h1>
+            <div class="subtitle">Paper Trading con Framework EAR Integrato</div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="tabs">
+            <button class="tab active" data-tab="dashboard">📊 Dashboard</button>
+            <button class="tab" data-tab="trade">💰 Trade</button>
+            <button class="tab" data-tab="analysis">📈 Analisi</button>
+            <button class="tab" data-tab="history">📜 Storia</button>
+        </nav>
+
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content active">
+            <div class="grid-2">
+                <!-- Portfolio Section -->
+                <section class="card">
+                    <h2>💼 Portfolio</h2>
+                    <div id="portfolio-content">
+                        <div class="loading">Caricamento...</div>
+                    </div>
+                </section>
+
+                <!-- Market Section -->
+                <section class="card">
+                    <h2>📊 Mercato</h2>
+                    <div class="market-selector">
+                        <button class="market-btn active" data-symbol="BTC">BTC</button>
+                        <button class="market-btn" data-symbol="ETH">ETH</button>
+                        <button class="market-btn" data-symbol="SOL">SOL</button>
+                    </div>
+                    <div id="market-content">
+                        <div class="loading">Caricamento...</div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- EAR Indicators Section -->
+            <section class="card ear-indicators">
+                <h2>🧠 Indicatori EAR</h2>
+                <div id="ear-indicators-content">
+                    <div class="loading">Seleziona un asset...</div>
+                </div>
+            </section>
+
+            <!-- Recommendation Section -->
+            <section class="card recommendation">
+                <h2>💡 Raccomandazione</h2>
+                <div id="recommendation-content">
+                    <div class="loading">Seleziona un asset...</div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Trade Tab -->
+        <div id="trade" class="tab-content">
+            <section class="card">
+                <h2>💰 Nuovo Trade</h2>
+                <form id="trade-form">
+                    <div class="form-group">
+                        <label>Asset:</label>
+                        <select id="trade-asset" required>
+                            <option value="BTC">Bitcoin (BTC)</option>
+                            <option value="ETH">Ethereum (ETH)</option>
+                            <option value="SOL">Solana (SOL)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Direzione:</label>
+                        <div class="radio-group">
+                            <label>
+                                <input type="radio" name="direction" value="BUY" checked>
+                                🟢 Long (Compra)
+                            </label>
+                            <label>
+                                <input type="radio" name="direction" value="SELL">
+                                🔴 Short (Vendi)
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Prezzo Corrente:</label>
+                        <input type="text" id="current-price-display" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Quantità:</label>
+                        <input type="number" id="trade-amount" step="0.001" min="0.001" required>
+                        <span class="helper-text">Valore: <span id="trade-value">$0</span></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Stop Loss (%):</label>
+                        <input type="number" id="stop-loss" value="-7" step="0.1">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Take Profit 1 (%):</label>
+                        <input type="number" id="take-profit-1" value="8" step="0.1">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Take Profit 2 (%):</label>
+                        <input type="number" id="take-profit-2" value="15" step="0.1">
+                    </div>
+
+                    <div id="trade-assistant" class="assistant-box">
+                        <h3>🤖 EAR Assistant</h3>
+                        <div id="trade-assistant-content">
+                            Seleziona un asset per vedere l'analisi...
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Esegui Trade</button>
+                </form>
+            </section>
+        </div>
+
+        <!-- Analysis Tab -->
+        <div id="analysis" class="tab-content">
+            <section class="card">
+                <h2>📈 Analisi Approfondita</h2>
+                <div class="market-selector">
+                    <button class="analysis-btn active" data-symbol="BTC">BTC</button>
+                    <button class="analysis-btn" data-symbol="ETH">ETH</button>
+                    <button class="analysis-btn" data-symbol="SOL">SOL</button>
+                </div>
+                <div id="deep-analysis-content">
+                    <div class="loading">Caricamento analisi...</div>
+                </div>
+            </section>
+        </div>
+
+        <!-- History Tab -->
+        <div id="history" class="tab-content">
+            <section class="card">
+                <h2>📜 Storia Trade</h2>
+                <div id="history-stats" class="stats-grid">
+                    <div class="loading">Caricamento statistiche...</div>
+                </div>
+                <div id="history-table">
+                    <div class="loading">Caricamento trade...</div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
